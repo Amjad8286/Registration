@@ -1,0 +1,121 @@
+{% extends 'application/basic.html' %}
+    <title>{% block title %}Report Form{% endblock title %}</title>
+    {% block body %}
+        <div class="page-wrapper">
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-7 align-self-center">
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">New master incident</h4>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb m-0 p-0">
+                                    <li class="breadcrumb-item"><a href="index.html" class="text-muted">Home</a></li>
+                                    <li class="breadcrumb-item text-muted active" aria-current="page">report form</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="container-fluid"> 
+                <div id="incidentForm">
+                    <form method="post" action="{% url 'report' %}" id="incidentFormSubmit">
+                        {% csrf_token %}            
+                        <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-md-2">Location</div>
+                            <div class="col-md-10">
+                               <select id="location" name="location" required>
+                                   <option>Operation department</option>
+                                   <option>Operation department 2</option>
+                                   <option>Operation department 3</option>
+                                   <option>Operation department 4</option>
+                               </select>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-md-2">Incident Department</div>
+                            <div class="col-md-10">
+                               <textarea name="incident_department" required id="incident_department"></textarea>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-md-2">Date and Time of Incident</div>
+                            <div class="col-md-10">
+                               <input type="date" id="date" name="date" >
+                               
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-10">
+                                <input type="time" id="time" name="time" required>
+                            </div>
+                            
+                        </div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-md-2">Incident Location</div>
+                            <div class="col-md-10">
+                               <textarea name="incident_location" id="incident_location" required></textarea>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-md-2">Initial severity</div>
+                            <div class="col-md-10">
+                               <select id="initial_severty" name="initial_severty" required>
+                                   <option>Mild</option>
+                                   <option>Mild 2</option>
+                                   <option>Mild 3</option>
+                                   <option>Mild 4</option>
+                               </select>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-md-2">Suspected Cause</div>
+                            <div class="col-md-10">
+                               <textarea name="suspected_Cause" id="suspected_Cause" required></textarea>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-md-2">Immidaite action taken</div>
+                            <div class="col-md-10">
+                               <textarea name="immediate_action" id="immediate_action" required></textarea>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-md-2">Sub incident types</div>
+                            <div class="col-md-10">
+                               <div>
+                                   <label><input style="margin-right: 5px" type="checkbox" 
+                                    name="Enviromental_Incident" id="Enviromental_Incident">Enviromental Incident</label>
+                               </div>
+                               <div>
+                                   <label><input style="margin-right: 5px" type="checkbox" 
+                                    name="injuryillness" id="injuryillness">Injuryillness</label>
+                               </div>
+                               <div>
+                                   <label><input style="margin-right: 5px" type="checkbox" 
+                                    name="Property_damage" id="Property_damage">Property damage</label>
+                               </div>
+                               <div>
+                                   <label><input style="margin-right: 5px" type="checkbox" 
+                                    name="vehicle" id="vehicle">Vehicle</label>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-md-2">Reported By</div>
+                            <div class="col-md-10">
+                              {{request.user}}
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            
+                            <div class="col-md-12 text-right">
+                              <button class="btn btn-primary" id="saveInc" type="submit">Save</button><button style="margin: 0 10px;" id="saveLater" class="btn btn-primary">Save for latter</button>
+                              <button id="cancel" class="btn btn-sm">Cancel</button>
+                            </div> 
+                        </div>
+                    </form>
+                </div> 
+                
+            </div>
+            {% endblock body %}
